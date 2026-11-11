@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seva Circle – Volunteer Together</title>
+  <meta name="description" content="Seva Circle: a volunteering NGO demo site with a built-in free AI assistant that can chat and edit the page." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#" class="brand"><span class="logo">◎</span> <span data-edit="brand-name">Seva Circle</span></a>
+      <nav>
+        <a href="#programs">Programs</a>
+        <a href="#impact">Impact</a>
+        <a href="#join">Join</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow" data-edit="hero-eyebrow">Community volunteering · Since 2019</p>
+      <h1 data-edit="hero-title">Small hands, big change.</h1>
+      <p class="lead" data-edit="hero-subtitle">We connect everyday people with local causes — teaching, feeding, planting and caring — a few hours at a time.</p>
+      <div class="cta-row">
+        <a href="#join" class="btn primary" data-edit="hero-cta">Become a volunteer</a>
+        <button class="btn ghost" id="openChatHero">Ask our AI helper</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="programs" class="section">
+    <div class="wrap">
+      <h2 data-edit="programs-title">Our programs</h2>
+      <p class="muted" data-edit="programs-intro">Pick what you love. Every program runs on weekends and needs no prior experience.</p>
+      <div class="cards" id="programCards">
+        <article class="card"><div class="icon">📚</div><h3>Weekend Tutoring</h3><p>Help school kids with maths, English and science in community centres.</p></article>
+        <article class="card"><div class="icon">🍲</div><h3>Food for All</h3><p>Cook, pack and distribute meals to families and daily-wage workers.</p></article>
+        <article class="card"><div class="icon">🌳</div><h3>Green City</h3><p>Plant and care for trees along roads, schools and lake shores.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="section alt">
+    <div class="wrap">
+      <h2 data-edit="impact-title">Impact so far</h2>
+      <div class="stats">
+        <div class="stat"><b data-edit="stat-volunteers">2,400+</b><span>volunteers</span></div>
+        <div class="stat"><b data-edit="stat-meals">58,000</b><span>meals served</span></div>
+        <div class="stat"><b data-edit="stat-trees">9,300</b><span>trees planted</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="join" class="section">
+    <div class="wrap join">
+      <div>
+        <h2 data-edit="join-title">Give a weekend. Gain a community.</h2>
+        <p class="muted" data-edit="join-text">Sign up and we'll match you with a program near you within a week.</p>
+      </div>
+      <form class="join-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thanks! We will reach out ✓';">
+        <input required placeholder="Your name" />
+        <input required type="email" placeholder="Email" />
+        <button class="btn primary">Sign me up</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap"><span data-edit="footer-text">© Seva Circle · A demo NGO site (proof of concept)</span></div>
+  </footer>
+
+  <!-- ===== AI widget ===== -->
+  <button class="fab" id="fab" aria-label="Open AI assistant">✦ AI</button>
+
+  <aside class="panel" id="panel" aria-hidden="true">
+    <div class="panel-head">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-mode="chat">Chat</button>
+        <button class="tab" data-mode="edit">Edit page</button>
+      </div>
+      <button class="icon-btn" id="settingsBtn" title="AI settings">⚙</button>
+      <button class="icon-btn" id="closePanel" title="Close">✕</button>
+    </div>
+
+    <div class="settings" id="settings" hidden>
+      <label>AI provider
+        <select id="provider">
+          <option value="puter">Puter.js — free, no API key</option>
+          <option value="openrouter">OpenRouter — free models (your key)</option>
+        </select>
+      </label>
+      <label id="modelRow">Model
+        <input id="model" placeholder="leave blank for default" />
+      </label>
+      <label id="keyRow" hidden>OpenRouter API key
+        <input id="apiKey" type="password" placeholder="sk-or-..." />
+        <small>Stored only in this browser (localStorage). Never put a key in your repo.</small>
+      </label>
+      <button class="btn small" id="saveSettings">Save</button>
+    </div>
+
+    <div class="hint" id="hint"></div>
+    <div class="messages" id="messages"></div>
+
+    <div class="edit-tools" id="editTools" hidden>
+      <button class="chip" id="undoEdit">↶ Undo</button>
+      <button class="chip" id="saveEdits">💾 Save edits</button>
+      <button class="chip" id="exportHtml">⬇ Export HTML</button>
+      <button class="chip" id="resetEdits">↺ Reset</button>
+    </div>
+
+    <form class="composer" id="composer">
+      <textarea id="input" rows="1" placeholder="Type a message…"></textarea>
+      <button class="btn primary" id="send">Send</button>
+    </form>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>
